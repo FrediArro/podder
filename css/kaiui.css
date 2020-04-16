@@ -13,6 +13,7 @@
  *  9. Button
  * 10. Input
  * 11. Table
+ * 12. Tabs
  * ===========================
  */
 
@@ -188,7 +189,7 @@ h1, h2, h3, h4, h5, ul, p {
 
 .kui-list li:focus .kui-pri,
 .kui-list li:focus .kui-sec {
-    color: #fff;
+    color: #ffffff;
 }
 
 /* ============== Options menu ============== */
@@ -231,10 +232,6 @@ h1, h2, h3, h4, h5, ul, p {
 
 /* ============== Button ============== */
 
-.item:hover {
-    color: #320374;
-}
-
 button.kui-btn {
     width: 220px;
     height: 36px;
@@ -255,9 +252,18 @@ button.kui-btn:focus {
 
 /* ============== Input ============== */
 .kui-input-holder {
+    width: 100%;
     height: 36px;
-    padding: 10px;
     background-color: #fff;
+}
+
+li:focus .kui-input-holder {
+    background-color: #873eff;
+    outline: 0;
+}
+
+li:focus .kui-input-holder .kui-input{
+    user-focus: true;
 }
 
 .kui-input-holder.kui-focus-within {
@@ -279,7 +285,7 @@ button.kui-btn:focus {
     height: 36px;
     width: 100%;
     border-radius: 2px;
-    padding-left: 10px;
+    padding-left: 5px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border: 1px solid #aaaaaa;
@@ -325,6 +331,33 @@ button.kui-btn:focus {
 .kui-table td:last-child {
     text-align: right;
 }
+
+:focus
+{
+    background-color: #863EFF;
+}
+
+/* ============== Tabs ============== */
+
+div.tab {
+    width: 100%;
+    height: 30px;
+    background-color: #E6E6E6;
+}
+
+div#page-0
+{
+
+}
+
+div#page-1
+{
+    display:none;
+
+}
+
+
+
 
 /* KaiOS portrait devices (240x320) */
 @media only screen and (orientation : portrait) {
