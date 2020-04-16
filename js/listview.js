@@ -1,13 +1,9 @@
-
 var list = $("div#page-0 [tabindex]");
-console.log(list.length)
 
 
 
 
-
-
-$("div#page-0 li:first").focus()
+$("div#page-0 li:first").focus();
 ////////////////////////
 //NAVIGATION
 /////////////////////////
@@ -37,21 +33,28 @@ function nav (param) {
             i--
         }
         $('li[tabindex='+i+']').focus()
-
     }
-
+    console.log(i);
     if(param == "left")
     {
-        $("div#page-1").css("display","none")
-        $("div#page-0").css("display","block")
-        $("div#page-0 li:first").focus()
+        if ($("div#page-0").css("display")=="none"){
+            $("div#page-1").css("display","none");
+            $("div#page-0").css("display","block");
+            list = $("div#page-0 [tabindex]");
+            i = 1;
+            $("div#page-0 li:first").focus()
+        }
     }
 
     if(param == "right")
     {
-        $("div#page-0").css("display","none")
-        $("div#page-1").css("display","block")
-        $("div#page-1 li:first").focus()
+        if ($("div#page-1").css("display")=="none") {
+            $("div#page-0").css("display","none");
+            $("div#page-1").css("display","block");
+            list = $("div#page-1 [tabindex]");
+            i = 1;
+            $("div#page-1 li:first").focus()
+        }
     }
     inputField()
 }
@@ -79,26 +82,26 @@ function handleKeyDown(evt) {
 
 
         case 'Enter':
-            clickclick()
+            clickclick();
             break;
 
 
         case 'ArrowDown':
-            nav("down")
+            nav("down");
             break;
 
 
         case 'ArrowUp':
-            nav("up")
+            nav("up");
             break;
 
 
         case 'ArrowLeft':
-            nav("left")
+            nav("left");
             break;
 
         case 'ArrowRight':
-            nav("right")
+            nav("right");
             break;
 
 
@@ -110,10 +113,8 @@ function handleKeyDown(evt) {
 
 
 function inputField() {
-    console.log("here")
     if ($(list[i-1]).find('div.kui-input-holder').length !== 0) {
         var field = $(list[i-1]).find('div.kui-input-holder').find('input').focus();
-        console.log(field)
     }
 }
 
