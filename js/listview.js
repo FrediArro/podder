@@ -1,4 +1,5 @@
 var list = $("div#page-0 [tabindex]");
+const tabs = $("div.kui-tab").find("p.kui-tab-text");
 
 
 
@@ -8,6 +9,9 @@ $("div#page-0 li:first").focus();
 //NAVIGATION
 /////////////////////////
 var i = 1;
+var tab_index = 0;
+
+tabNavigation()
 
 
 function nav (param) {
@@ -34,13 +38,14 @@ function nav (param) {
         }
         $('li[tabindex='+i+']').focus()
     }
-    console.log(i);
     if(param == "left")
     {
         if ($("div#page-0").css("display")=="none"){
             $("div#page-1").css("display","none");
             $("div#page-0").css("display","block");
             list = $("div#page-0 [tabindex]");
+            tab_index -= 1;
+            tabNavigation("left");
             i = 1;
             $("div#page-0 li:first").focus()
         }
@@ -52,7 +57,9 @@ function nav (param) {
             $("div#page-0").css("display","none");
             $("div#page-1").css("display","block");
             list = $("div#page-1 [tabindex]");
+            tab_index += 1;
             i = 1;
+            tabNavigation("right");
             $("div#page-1 li:first").focus()
         }
     }
@@ -109,13 +116,24 @@ function handleKeyDown(evt) {
 
     }
 
-};
+}
 
 
 function inputField() {
     if ($(list[i-1]).find('div.kui-input-holder').length !== 0) {
         var field = $(list[i-1]).find('div.kui-input-holder').find('input').focus();
     }
+}
+
+
+function tabNavigation(direction) {
+    if (direction=="right") {
+        $(tabs[tab_index-1]).addClass("kui-tab-text").removeClass("kui-tab-text-selected");
+    }
+    else {
+        $(tabs[tab_index+1]).addClass("kui-tab-text").removeClass("kui-tab-text-selected");
+    }
+    $(tabs[tab_index]).addClass("kui-tab-text-selected").removeClass("kui-tab-text");
 }
 
 
