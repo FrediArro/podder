@@ -98,6 +98,8 @@ h1, h2, h3, h4, h5, ul, p {
     background-color: #320374;
     color: #fff;
     text-align: center;
+    position: fixed;
+    width: 100%;
 }
 
 /* ============== Separator ============== */
@@ -111,24 +113,29 @@ h1, h2, h3, h4, h5, ul, p {
 
 /* ============== Software key ============== */
 .kui-software-key {
+    position: fixed;
+    width: 240px;
+    bottom: 0px;
+    z-index: 100;
     height: 30px;
     background-color: #cccccc;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    padding: 0 5px;
+    justify-content: space-between;
     color: #323232;
 }
 
 .kui-software-key h5 {
-    width: 33.3333333333%;
 }
 
 .kui-software-key h5:first-child {
     text-align: left;
+    padding-left: 5px;
 }
 
 .kui-software-key h5:last-child {
     text-align: right;
+    padding-right: 5px;
 }
 
 /* ============== Toast ============== */
@@ -150,6 +157,11 @@ h1, h2, h3, h4, h5, ul, p {
 }
 
 /* ============== Lists ============== */
+.kui-list-holder {
+    padding-top: 58px;
+    padding-bottom: 30px;
+}
+
 .kui-list {
     list-style: none;
 }
@@ -266,6 +278,10 @@ li:focus .kui-input-holder .kui-input{
     user-focus: true;
 }
 
+li:focus-within{
+    background-color: #873eff;
+}
+
 .kui-input-holder.kui-focus-within {
     background-color: #873eff;
     outline: 0;
@@ -284,7 +300,6 @@ li:focus .kui-input-holder .kui-input{
 .kui-input {
     height: 36px;
     width: 100%;
-    border-radius: 2px;
     padding-left: 5px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -332,16 +347,13 @@ li:focus .kui-input-holder .kui-input{
     text-align: right;
 }
 
-:focus
-{
-    background-color: #863EFF;
-}
-
 /* ============== Tabs ============== */
 
 .kui-tab {
     width: 100%;
     height: 30px;
+    margin-top: 28px;
+    position: fixed;
     background-color: #E6E6E6;
     justify-content: space-evenly;
     display: inline-flex;

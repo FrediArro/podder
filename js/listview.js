@@ -4,14 +4,14 @@ const tabs = $("div.kui-tab").find("p.kui-tab-text");
 
 
 
-$("div#page-0 li:first").focus();
 ////////////////////////
 //NAVIGATION
 /////////////////////////
 var i = 1;
 var tab_index = 0;
 
-tabNavigation()
+tabNavigation();
+inputField();
 
 
 function nav (param) {
