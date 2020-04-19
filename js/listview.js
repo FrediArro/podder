@@ -24,7 +24,7 @@ function nav (param) {
         else {
             i++
         }
-        $('li[tabindex='+i+']').focus()
+        $('li[tabindex='+i+']').focus();
 
     }
 
@@ -36,7 +36,7 @@ function nav (param) {
         else {
             i--
         }
-        $('li[tabindex='+i+']').focus()
+        $('li[tabindex='+i+']').focus();
     }
     if(param == "left")
     {

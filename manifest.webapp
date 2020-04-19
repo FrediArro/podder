@@ -1,0 +1,21 @@
+{
+"version": "1.0.0",
+"name": "podder",
+"description": "Application for listening podcasts",
+  "type": "web",
+  "launch_path": "/index.html",
+  "icons": {
+  },
+  "developer": {
+    "name": "podder",
+    "url": "https://github.com/FrediArro/podder"
+  },
+  "locales": {
+    "en-US": {
+      "name": "podder",
+      "subtitle": "Podcast application",
+      "description": "Application for listening podcasts"
+    }
+  },
+  "default_locale": "en-US"
+}
