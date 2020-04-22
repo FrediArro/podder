@@ -208,11 +208,20 @@ h1, h2, h3, h4, h5, ul, p {
 /* ============== Options menu ============== */
 .kui-option-menu {
     width: 100%;
-    position: absolute;
+    position: fixed;
     overflow: hidden;
     bottom: 0;
     display: none;
     padding-bottom: 30px;
+}
+
+.kui-option-menu-background {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+    background-color: black;
+    opacity: 65%;
 }
 
 .kui-option-menu .kui-option-title {
@@ -480,6 +489,10 @@ div#page-1
     .kui-options {
         height: 150px;
     }
+
+    .kui-option-menu-background {
+        height: 112px;
+    }
 }
 
 /* KaiOS landscape devices (320x240) */
@@ -494,6 +507,10 @@ div#page-1
 
     .kui-options {
         height: 100px;
+    }
+
+    .kui-option-menu-background {
+        height: 82px;
     }
 }
 
