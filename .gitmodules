@@ -1,0 +1,3 @@
+[submodule "KaiUI"]
+	path = KaiUI
+	url = https://github.com/FrediArro/KaiUI.git
