@@ -1,5 +1,3 @@
-const options = $("ul.kui-options li");
-
 function CSK() {
     window.history.back();
 }
@@ -12,9 +10,7 @@ function RSK() {
     if ($("div.kui-option-menu").css("display")==="none") {
         $("div.kui-option-menu").css("display", "block");
         $("div.kui-option-menu-background").css("display", "block");
-        console.log(options.length);
-        console.log(options[0]);
-        $(options[0]).focus();
+        $("ul.kui-options li:first").focus();
 
     }
     else {
