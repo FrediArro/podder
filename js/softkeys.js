@@ -34,7 +34,7 @@ function handleKeyDown(evt) {
             break;
 
         //computer use
-        case 'a':
+        case ',':
             LSK();
             break;
 
@@ -44,7 +44,7 @@ function handleKeyDown(evt) {
             break;
 
         //computer use
-        case 'd':
+        case "-":
             RSK();
             break;
     }

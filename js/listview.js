@@ -32,7 +32,7 @@ function handleKeyDown(evt) {
             break;
 
         //computer use
-        case 'd':
+        case '-':
             i_options = 1;
             break;
     }
