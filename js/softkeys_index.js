@@ -5,15 +5,14 @@ function LSK() {
 function RSK() {
 }
 
+function CSK() {
+
+}
+
 function handleKeyDown(evt) {
 
 
     switch (evt.key) {
-
-
-        case 'Enter':
-            CSK();
-            break;
 
         case 'SoftLeft':
             LSK();

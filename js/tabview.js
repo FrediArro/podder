@@ -1,7 +1,7 @@
 document.addEventListener('keydown', handleKeyDown);
 
 const tabs = $("div.kui-tab").find("p.kui-tab-text");
-var contentList = $("div#page-0 [tabindex]");
+var contentList = getContentList("div#page-0 [tabindex]");
 var inputFields = $("div.kui-input-holder input");
 var tab_index = 0;
 tabNavigation();
@@ -12,7 +12,6 @@ function handleKeyDown(evt) {
     if (!inputFocused || (inputFocused && (inputValue.length===0))) {
         switch (evt.key) {
             case "ArrowLeft":
-                console.log("here");
                 if ($("div#page-0").css("display") === "none") {
                     $("div#page-1").css("display", "none");
                     $("div#page-0").css("display", "block");
@@ -37,6 +36,13 @@ function handleKeyDown(evt) {
                 break;
         }
     }
+    else {
+        switch (evt.key) {
+            case "Enter":
+                search(inputValue)
+
+        }
+    }
 }
 
 function tabNavigation(direction) {
@@ -49,3 +55,70 @@ function tabNavigation(direction) {
     $(tabs[tab_index]).addClass("kui-tab-text-selected").removeClass("kui-tab-text");
 }
 
+//https://stackoverflow.com/questions/31227882/how-to-get-specific-value-from-itunes-api-using-javascript
+function  search(input) {
+    console.log(input);
+    $.ajax({
+        dataType: "json",
+        url: "https://itunes.apple.com/search?media=podcast&term=" + input + "&limit=10",
+        data: 'json',
+        success: function ( response ) {
+            var results = response.results;
+            generateList(results)
+        }
+    })
+
+}
+
+//generates new to the view
+function generateList(results) {
+    var listNumber = 2;
+    var resultsList = ($("#tab-"+ tab_index));
+    $(resultsList).children("li").slice(1).remove();
+    for (i=0; i<results.length; i++) {
+        var podcastName = results[i].trackName;
+        var artistName =results[i].artistName;
+        var artworkUrl = results[i].artworkUrl30;
+        var feedUrl = results[i].feedUrl;
+        var screenWidrth = $( window ).width();
+        if (screenWidrth<320) {
+            if (podcastName.length > 17) {
+                podcastName = textLength(podcastName, 17)
+            }
+            if (artistName.length > 23) {
+                artistName = textLength(artistName, 23)
+            }
+            else {
+                if (podcastName.length > 24) {
+                    podcastName = textLength(podcastName, 24)
+                }
+                if (artistName.length > 27) {
+                    artistName = textLength(artistName, 27)
+                }
+            }
+        }
+        $(resultsList).append("<li tabindex=\""+listNumber+"\" href=\'" + feedUrl + "\'>" +
+            "<div class=\"kui-list-img\" style=\'background-image: url(" + artworkUrl+ "); \'></div>\n" +
+            "<div class=\"kui-list-cont\">\n" +
+            "<p class=\"kui-pri\">"+podcastName+"</p>\n" +
+            "<p class=\"kui-sec\" style=\'text-align: left\'>"+artistName+"</p>\n" +
+            "</div>\n" +
+            "</li>");
+        listNumber += 1
+    }
+    contentList = getContentList("div#page-0 [tabindex]");
+    if (contentList.length > 1){
+        contentList[1].focus()
+    }
+}
+
+//Makes the text length right for the screen width
+function  textLength(text, number) {
+    text = text.substring(0, number) + "...";
+    return text
+}
+
+//Update content list
+function getContentList(id) {
+    return $(id);
+}

@@ -17,13 +17,11 @@ audio.onloadedmetadata = function() {
     for (i=0; i<audioDurationFormatted.length; i++) {
         if (audioDurationFormatted[i].charAt(0)=="0") {
             audioDurationFormatted[i] = audioDurationFormatted[i].charAt(1);
-        }
-        console.log(audioDurationFormatted);
+        };
     }
     if (audioDurationFormatted.length<3){
         audioDurationFormatted.unshift("0");
     }
-    console.log(audioDurationFormatted);
     document.getElementById("time-total").innerText = formatTime(audioDuration);
 };
 
@@ -97,10 +95,8 @@ function UP() {
         var value = parseInt(($(middleRow[timeSelector]).children("p")).text());
         if (timeSelector>=1) {
             var leftValue = parseInt(($(middleRow[timeSelector-1]).children("p")).text());
-            console.log(parseInt(audioDurationFormatted[timeSelector-1]));
             if (leftValue===parseInt(audioDurationFormatted[timeSelector-1])) {
                 if (value===parseInt(audioDurationFormatted[timeSelector])){
-                    console.log("here");
                     ($(middleRow[timeSelector]).children("p")).text(0);
                 }
                 else{
@@ -123,10 +119,6 @@ function UP() {
             }
         }
         else {
-            console.log("here");
-            console.log(timeSelector);
-            console.log(value);
-            console.log(parseInt((audioDurationFormatted[timeSelector])));
             if (value === parseInt((audioDurationFormatted[timeSelector]))) {
                 ($(middleRow[timeSelector]).children("p")).text(0);
             }
@@ -222,6 +214,16 @@ function handleKeyDown(evt) {
 
         case 'Enter':
             CSK();
+            break;
+
+        case 'Backspace':
+            if (optionsVisible) {
+                hideOptions()
+            }
+            else {
+            evt.preventDefault();
+            window.history.back();
+            }
             break;
     }
 }
