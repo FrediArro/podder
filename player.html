@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="KaiUI/css/normalize.css">
     <link rel="stylesheet" href="KaiUI/css/kaiui.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <audio id="audio" preload="metadata"></audio>
 </head>
 <body id="kui-app">
 <div class="kui-header">
@@ -20,27 +21,46 @@
     <p class="kui-pri">Episode name</p>
     <p class="kui-sec">Podcast name</p>
     <div class="kui-player-time-info">
-        <div class="kui-player-timeline"></div>
-        <div class="kui-playback-time-holder">
-            <p id="current-time" class="kui-playback-time">5:40</p>
-            <p id="time-remaining" class="kui-playback-time">-10:40</p>
+        <div class="kui-player-timeline"><div class="kui-player-timeline-time"></div></div>
+            <div class="kui-playback-time-holder">
+            <p id="current-time" class="kui-playback-time">--:--</p>
+            <p id="time-total" class="kui-playback-time">--:--</p>
         </div>
     </div>
 </div>
+<div class="kui-option-menu-background"></div>
 <div class="kui-option-menu">
     <h2 class="kui-pri kui-option-title">Skip to</h2>
-    <ul class="kui-options">
-        <li>Option 1</li>
-        <li>Option 2</li>
-        <li>Option 3</li>
-    </ul>
+        <div class="kui-time-value-holder">
+            <li>
+                <ul class="kui-time-value">
+                    <li><p>△</p></li>
+                    <li tabindex="1"><p>0</p></li>
+                    <li><p>▽</p></li>
+                </ul>
+            </li>
+            <li>
+                <ul id="center" class="kui-time-value">
+                    <li><p>△</p></li>
+                    <li tabindex="2"><p>0</p></li>
+                    <li><p>▽</p></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="kui-time-value">
+                    <li><p>△</p></li>
+                    <li tabindex="3"><p>0</p></li>
+                    <li><p>▽</p></li>
+                </ul>
+            </li>
+        </div>
 </div>
 <div class= "kui-software-key">
     <h5 role="button" class="kui-h5 kui-text-left">Queue</h5>
     <h5 role="button" class="kui-h5 kui-text-center kui-text-upcase">PLAY</h5>
     <h5 role="button" class="kui-h5 kui-text-right">Skip to</h5>
 </div>
-<script src="js/softkeys.js"></script>
 <script src="js/backkey.js"></script>
+<script src="js/player.js"></script>
 </body>
 </html>
