@@ -12,7 +12,13 @@ var thumbnail = document.getElementById("thumbnail");
 var timeline = document.getElementsByClassName("kui-player-timeline-time");
 timeline = timeline[0];
 audio.setAttribute('src', audioUrl);
-thumbnail.setAttribute('src', artworkURL);
+if (artworkURL === 'undefined') {
+    $(".kui-player-thumbnail").css('background-color', "gray");
+}
+else {
+    thumbnail.setAttribute('src', artworkURL);
+}
+
 $("#episode-name").text(episodeName);
 $("#podcast-name").text(podcastName);
 var playing = false;
@@ -53,9 +59,30 @@ function RIGHT() {
         }
     }
     else {
-        //SKIP TO NEXT TRACK
-    }
-}
+        var db;
+        var request = window.indexedDB.open("podderDatabase", 1);
+        request.onerror = function (event) {
+            console.log("Why didn't you allow my web app to use IndexedDB?!");
+        };
+        request.onsuccess = function (event) {
+            db = event.target.result;
+            let tx = db.transaction(["queue"], "readwrite");
+            let store = tx.objectStore("queue");
+            let all = store.getAll();
+            tx.oncomplete = function (event) {
+                db = all.result;
+                console.log("here");
+                var episode = (db[0].name).substring(0,(db[0].name).length-1);
+                var author = db[0].author;
+                var feed_url = db[0].feed_url;
+                var logo_url = db[0].logo_url;
+                console.log(episode);
+                console.log("player.html?episode=" + episode + "]&src=" + feed_url + "]&artwork=" + logo_url + "]&artist=" + author);
+                window.location.href = "player.html?episode=" + episode + "]&src=" + feed_url + "]&artwork=" + logo_url + "]&artist=" + author;
+                }
+            }
+        }
+};
 
 function LEFT() {
     if (optionsVisible){
