@@ -1,10 +1,20 @@
 document.addEventListener('keydown', handleKeyDown);
 
-//Getting and updating the audio
+console.log(document.referrer);
+
+//Getting and updating information about the playing podcast.
+var episodeName = getUrlParameter("?episode");
+var podcastName = getUrlParameter("artist");
+var audioUrl = getUrlParameter("src");
+var artworkURL = getUrlParameter("artwork");
 var audio = document.getElementById("audio");
+var thumbnail = document.getElementById("thumbnail");
 var timeline = document.getElementsByClassName("kui-player-timeline-time");
 timeline = timeline[0];
-audio.setAttribute('src', "https://traffic.omny.fm/d/clips/ad35d8cb-2dfe-45c8-a4f9-a68700d12423/f4d84dd7-5be7-41e6-9cd2-a68700d1647e/909f730d-8f7a-4727-935f-abb200038c22/audio.mp3?utm_source=Podcast&amp;in_playlist=eaa057d0-6a85-4191-b142-a81000e4e109&amp;t=1588637996");
+audio.setAttribute('src', audioUrl);
+thumbnail.setAttribute('src', artworkURL);
+$("#episode-name").text(episodeName);
+$("#podcast-name").text(podcastName);
 var playing = false;
 
 //Updating total timestamp
@@ -278,5 +288,22 @@ function hideOptions() {
     }
     else {
         $( ".kui-text-center" ).text("PLAY");
+    }
+}
+
+//Function for getting parameters from URL
+//Author: Virenda
+// Source: http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.href;
+    sPageURL = sPageURL.substring(sPageURL.indexOf("?"), sPageURL.length);
+    var sURLVariables = sPageURL.split("]&");
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
     }
 }

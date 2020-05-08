@@ -19,5 +19,10 @@
       "description": "Application for listening podcasts"
     }
   },
+  "permissions": {
+  "audio-channel-content" : {
+      "description" : "Needed to play this app's audio content on the content channel"
+    }
+   },
   "default_locale": "en-US"
 }

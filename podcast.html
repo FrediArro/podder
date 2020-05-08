@@ -14,7 +14,7 @@
     <h1 class="kui-h1">podder</h1>
 </div>
 <div class="kui-separator" style="margin-top: 28px; position: fixed">
-    <h1 class="kui-h1">Podcast name</h1>
+    <h1 id="name" class="kui-h1">Podcast name</h1>
 </div>
 <div id="page-0" class="kui-list-holder" style="padding-top: 56px">
     <ul class="kui-list">
@@ -22,21 +22,6 @@
             <div class="kui-input-holder">
                 <input type="text" class="kui-input kui-text" placeholder="Search" autofocus>
             </div>
-        </li>
-        <li tabindex="2">
-            <div class="kui-list-img"></div>
-            <div class="kui-list-cont">
-                <p class="kui-pri">first page text</p>
-                <p class="kui-sec">Secondary text</p>
-            </div>
-        </li>
-        <li tabindex="3">
-            <div class="kui-list-img"></div>
-            <div class="kui-list-cont">
-                <p class="kui-pri">test text</p>
-                <p class="kui-sec">Secondary text</p>
-            </div>
-        </li>
     </ul>
 </div>
 <div class= "kui-software-key">
@@ -44,7 +29,10 @@
     <h5 role="button" class="kui-h5 kui-text-center kui-text-upcase">SELECT</h5>
     <h5 role="button" class="kui-h5 kui-text-right">Subscribe</h5>
 </div>
-<script src="js/listview.js"></script>
+<div class="kui-error-message"><p style="color: darkred; font-size: 40px; text-align: center; padding-top: 56px">!</p>
+    <p style="font-size: 15px; text-align: center">Sorry, we can not access the results. Will be fixed soon!</p>
+    <p style="font-size: 15px; text-align: center; padding-top: 5px; font-weight: bold">Press back to return.</p></div>
+<script src="js/listview_podcast.js"></script>
 <script src="js/softkeys_podast.js"></script>
 <script src="js/backkey.js"></script>
 </body>

@@ -1,6 +1,5 @@
-function CSK() {
-    window.history.back();
-}
+document.addEventListener('keydown', handleKeyDown);
+
 
 function LSK() {
     window.location.href = "player.html"
@@ -24,11 +23,6 @@ function handleKeyDown(evt) {
 
     switch (evt.key) {
 
-
-        case 'Enter':
-            CSK();
-            break;
-
         case 'SoftLeft':
             LSK();
             break;
@@ -50,4 +44,3 @@ function handleKeyDown(evt) {
     }
 }
 
-document.addEventListener('keydown', handleKeyDown);

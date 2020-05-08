@@ -40,7 +40,6 @@ function handleKeyDown(evt) {
         switch (evt.key) {
             case "Enter":
                 search(inputValue)
-
         }
     }
 }
@@ -57,7 +56,6 @@ function tabNavigation(direction) {
 
 //https://stackoverflow.com/questions/31227882/how-to-get-specific-value-from-itunes-api-using-javascript
 function  search(input) {
-    console.log(input);
     $.ajax({
         dataType: "json",
         url: "https://itunes.apple.com/search?media=podcast&term=" + input + "&limit=10",
@@ -80,25 +78,9 @@ function generateList(results) {
         var artistName =results[i].artistName;
         var artworkUrl = results[i].artworkUrl30;
         var feedUrl = results[i].feedUrl;
-        var screenWidrth = $( window ).width();
-        if (screenWidrth<320) {
-            if (podcastName.length > 17) {
-                podcastName = textLength(podcastName, 17)
-            }
-            if (artistName.length > 23) {
-                artistName = textLength(artistName, 23)
-            }
-            else {
-                if (podcastName.length > 24) {
-                    podcastName = textLength(podcastName, 24)
-                }
-                if (artistName.length > 27) {
-                    artistName = textLength(artistName, 27)
-                }
-            }
-        }
-        $(resultsList).append("<li tabindex=\""+listNumber+"\" href=\'" + feedUrl + "\'>" +
-            "<div class=\"kui-list-img\" style=\'background-image: url(" + artworkUrl+ "); \'></div>\n" +
+        var itunesId = results[i].trackId;
+        $(resultsList).append("<li tabindex=\""+listNumber+"\" href=\'" + feedUrl + "\' id=\""+ itunesId +"\"'>" +
+            "<div class=\"kui-list-img\" style=\'background-image: url(" + artworkUrl+ ") \'></div>\n" +
             "<div class=\"kui-list-cont\">\n" +
             "<p class=\"kui-pri\">"+podcastName+"</p>\n" +
             "<p class=\"kui-sec\" style=\'text-align: left\'>"+artistName+"</p>\n" +
@@ -106,7 +88,7 @@ function generateList(results) {
             "</li>");
         listNumber += 1
     }
-    contentList = getContentList("div#page-0 [tabindex]");
+    contentList = getContentList("div#page-"+ tab_index +" [tabindex]");
     if (contentList.length > 1){
         contentList[1].focus()
     }
@@ -122,3 +104,4 @@ function  textLength(text, number) {
 function getContentList(id) {
     return $(id);
 }
+

@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="KaiUI/css/normalize.css">
     <link rel="stylesheet" href="KaiUI/css/kaiui.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-    <audio id="audio" preload="metadata"></audio>
+    <audio id="audio" preload="metadata" mozaudiochannel="content"></audio>
 </head>
 <body id="kui-app">
 <div class="kui-header">
     <h1 class="kui-h1">podder</h1>
 </div>
 <div class="kui-player-thumbnail">
-    <img src='https://mdn.mozillademos.org/files/7693/catfront.png'>
+    <img id="thumbnail">
 </div>
 <div class="kui-player-info">
-    <p class="kui-pri">Episode name</p>
-    <p class="kui-sec">Podcast name</p>
+    <p id="episode-name" class="kui-pri">Episode name</p>
+    <p id="podcast-name" class="kui-sec">Podcast name</p>
     <div class="kui-player-time-info">
         <div class="kui-player-timeline"><div class="kui-player-timeline-time"></div></div>
             <div class="kui-playback-time-holder">

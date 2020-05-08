@@ -14,6 +14,7 @@ inputField();
 
 function handleKeyDown(evt) {
     var optionsVisible = ($("div.kui-option-menu").css("display") === "block");
+    var inputFocused = ($(inputFields[tab_index]).is(":focus"));
     switch (evt.key) {
         case 'ArrowDown':
             if(optionsVisible) {optionsListDown()}
@@ -35,6 +36,11 @@ function handleKeyDown(evt) {
         case '-':
             i_options = 1;
             break;
+
+        case "Enter":
+            if (!inputFocused) {
+                open();
+            }
     }
     inputField()
 }
@@ -44,18 +50,6 @@ function inputField() {
     if ($(contentList[i_content-1]).find('div.kui-input-holder').length !== 0) {
         $(contentList[i_content-1]).find('div.kui-input-holder').find('input').focus();
     }
-}
-
-
-
-function optionsListDown() {
-    if (i_options === optionsList.length) {
-        i_options = 1
-    }
-    else {
-        i_options++
-    }
-    $(optionsList[i_options-1]).focus();
 }
 
 function contentListDown() {
@@ -68,16 +62,6 @@ function contentListDown() {
     $(contentList[i_content-1]).focus();
 }
 
-function optionsListUp() {
-    if (i_options===1) {
-        i_options = optionsList.length
-    }
-    else {
-        i_options--;
-    }
-    $(optionsList[i_options-1]).focus()
-}
-
 function contentListUp() {
     if (i_content===1) {
         i_content = contentList.length
@@ -86,4 +70,15 @@ function contentListUp() {
         i_content--;
     }
     $(contentList[i_content-1]).focus()
+}
+
+//Opens the podcast view
+function open() {
+    var focused =  $(":focus");
+    var name = $(focused).find(".kui-pri").text();
+    var itunesid = $(focused).attr("id");
+    var feedUrl = $(focused).attr("href");
+    console.log(itunesid);
+    console.log(feedUrl);
+    window.location.href = "podcast.html?name=" + name + "&rss=" + feedUrl;
 }
