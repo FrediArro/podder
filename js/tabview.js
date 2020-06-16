@@ -55,14 +55,15 @@ function tabNavigation(direction) {
 }
 
 //https://stackoverflow.com/questions/31227882/how-to-get-specific-value-from-itunes-api-using-javascript
-function  search(input) {
+function search(input) {
     $.ajax({
         dataType: "json",
         url: "https://itunes.apple.com/search?media=podcast&term=" + input + "&limit=10",
         data: 'json',
         success: function ( response ) {
-            var results = response.results;
-            generateList(results)
+            const back = response.results;
+            console.log(back);
+            generateList(back);
         }
     })
 
@@ -70,8 +71,9 @@ function  search(input) {
 
 //generates new to the view
 function generateList(results) {
+    console.log("here");
     var listNumber = 2;
-    var resultsList = ($("#tab-"+ tab_index));
+    var resultsList = ($("#tab-"+ 1));
     $(resultsList).children("li").slice(1).remove();
     for (i=0; i<results.length; i++) {
         var podcastName = results[i].trackName;
@@ -79,6 +81,7 @@ function generateList(results) {
         var artworkUrl = results[i].artworkUrl30;
         var feedUrl = results[i].feedUrl;
         var itunesId = results[i].trackId;
+        console.log(podcastName);
         $(resultsList).append("<li tabindex=\""+listNumber+"\" href=\'" + feedUrl + "\' id=\""+ itunesId +"\"'>" +
             "<div class=\"kui-list-img\" style=\'background-image: url(" + artworkUrl+ ") \'></div>\n" +
             "<div class=\"kui-list-cont\">\n" +

@@ -1,11 +1,6 @@
 document.addEventListener('keydown', handleKeyDown);
 
-//Opening a database
-//Source: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
-
-function getDatabase() {
-
-}
+generateSubscribed()
 
 var contentList = $("div#page-0 .kui-list");
 
@@ -102,10 +97,12 @@ function RSK() {
                 var logoUrl = $(focused).find(".kui-list-img").css("background-image");
                 var podcast = {itunesID: itunesId, name: name, author: author, feed_url: feedUrl, logo_url: logoUrl, descending: "yes"};
                 console.log(podcast);
-                subscribe(podcast)
+                subscribe(podcast);
+                generateSubscribed();
             }
             else{
                 unsubscribe(itunesId);
+                generateSubscribed();
             }
         };
         request.onerror =function (event) {
@@ -174,7 +171,7 @@ function unsubscribe(id) {
 };
 
 
-function generateList() {
+function generateSubscribed() {
     var listNumber = 0;
     var db;
     var request = window.indexedDB.open("podderDatabase", 1);
@@ -188,18 +185,21 @@ function generateList() {
         let all = store.getAll();
         tx.oncomplete = function(event) {
             db = all.result;
+            const subscribedList = $("#page-0 .kui-list");
+            $(subscribedList).children("li").slice(1).remove();
+            console.log(subscribedList);
             for (i=0; i<db.length; i++) {
                 console.log(db);
                 var name = db[i].name;
                 var author = db[i].author;
                 var feed_url = db[i].feed_url;
                 var logo_url = db[i].logo_url;
-                console.log("here");
-                $(resultsList).append("<li tabindex=\""+listNumber+"\" href=\'" + feedUrl + "\' id=\""+ itunesId +"\"'>" +
-                    "<div class=\"kui-list-img\" style=\'background-image: url(" + artworkUrl+ ") \'></div>\n" +
+                var itunesId = db[i].itunesID;
+                $(subscribedList).append("<li tabindex=\""+listNumber+"\" href=\'" + feed_url + "\' id=\""+ itunesId +"\"'>" +
+                    "<div class=\"kui-list-img\" style=\'background-image: " + logo_url+ " \'></div>\n" +
                     "<div class=\"kui-list-cont\">\n" +
-                    "<p class=\"kui-pri\">"+podcastName+"</p>\n" +
-                    "<p class=\"kui-sec\" style=\'text-align: left\'>"+artistName+"</p>\n" +
+                    "<p class=\"kui-pri\">"+name+"</p>\n" +
+                    "<p class=\"kui-sec\" style=\'text-align: left\'>"+author+"</p>\n" +
                     "</div>\n" +
                     "</li>");
                 listNumber += 1

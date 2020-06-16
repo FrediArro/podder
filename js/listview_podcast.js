@@ -140,6 +140,7 @@ function contentListUp() {
 }
 
 //Opens the podcast view
+//Opens the podcast view
 function play() {
     var focused =  $(":focus");
     var place = $(focused).attr("tabindex");
@@ -226,6 +227,7 @@ function option() {
 
 function addToQueue() {
     var episode = episodes[i_content-2];
+    console.log(episode[3]);
     var db;
     var request = window.indexedDB.open("podderDatabase", 1);
     request.onerror = function(event) {
@@ -235,12 +237,12 @@ function addToQueue() {
         db = event.target.result;
         let tx = db.transaction(["queue"], "readwrite");
         let store = tx.objectStore("queue");
-        store.add({name: episode[0], author: name, feed_url: episode[1], logo_url: episode[2]});
+        store.add({name: episode[0], author: name, feed_url: episode[1], logo_url: episode[3]});
         tx.oncomplete = function () {
             $("div.kui-option-menu").css("display", "none");
             $("div.kui-option-menu-background").css("display", "none");
             contentList[i_content-1].focus();
-            console.log("Episode added to queue" + episode[0]);
+            console.log("Episode added to queue " + episode[0]);
             var header = $(".kui-header");
             header.css("background-color", "green");
             header.text("Added to Q: " + episode[0]);

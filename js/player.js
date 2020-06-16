@@ -8,6 +8,7 @@ var podcastName = getUrlParameter("artist");
 var audioUrl = getUrlParameter("src");
 var artworkURL = getUrlParameter("artwork");
 var audio = document.getElementById("audio");
+var volume = navigator.volumeManager;
 var thumbnail = document.getElementById("thumbnail");
 var timeline = document.getElementsByClassName("kui-player-timeline-time");
 timeline = timeline[0];
@@ -123,7 +124,8 @@ function DOWN() {
         }
     }
     else {
-        //VOLUME CONTROL
+        volume.requestDown();
+        volume.requestShow();
     }
 }
 
@@ -165,7 +167,8 @@ function UP() {
         }
     }
     else {
-        //VOLUME CONTROL
+        volume.requestUp();
+        volume.requestShow();
     }
 }
 
