@@ -22,7 +22,8 @@ else {
 
 $("#episode-name").text(episodeName);
 $("#podcast-name").text(podcastName);
-var playing = false;
+audio.play();
+var playing = true;
 
 //Updating total timestamp
 var audioDuration = 0;

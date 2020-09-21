@@ -39,6 +39,7 @@ function handleKeyDown(evt) {
 
         //computer use
         case '-':
+            console.log("remove");
             RSK();
             break;
 
@@ -119,6 +120,7 @@ function generateList() {
         let store = tx.objectStore("queue");
         let all = store.getAll();
         tx.oncomplete = function(event) {
+            console.log(all);
             db = all.result;
             console.log("here");
             for (i=0; i<db.length; i++) {
@@ -126,9 +128,9 @@ function generateList() {
                 var episode = db[i].name;
                 var author = db[i].author;
                 var feed_url = db[i].feed_url;
-                var logo_url = db[i].logo_url;
+                var id = keys[i];
                 console.log("here");
-                resultsList.append("<li tabindex=\""+listNumber+"\" href=\'" + feed_url + "\'>" +
+                resultsList.append("<li id=\""+ id +"\" tabindex=\""+ listNumber +"\" href=\'" + feed_url + "\'>" +
                     "<div class=\"kui-list-cont\">\n" +
                     "<p class=\"kui-pri episode\">"+ episode +"</p>\n" +
                     "<p class=\"kui-sec timestamp\">"+ author +"</p>\n" +
@@ -146,6 +148,7 @@ function generateList() {
 }
 
 function removeFromQueue(id) {
+    console.log("Queue remove");
     var db;
     var request = window.indexedDB.open("podderDatabase", 1);
     request.onerror = function(event) {
@@ -179,5 +182,10 @@ function LSK() {
 }
 
 function RSK() {
+
+    var focused =  $(":focus");
+    console.log(focused);
+    var id = $(focused).attr("tabindex");
+    console.log(id);
     removeFromQueue(id);
 }

@@ -139,12 +139,11 @@ function contentListUp() {
     $(contentList[i_content-1]).focus()
 }
 
-//Opens the podcast view
-//Opens the podcast view
+//Opens the episode in player
 function play() {
     var focused =  $(":focus");
     var place = $(focused).attr("tabindex");
-    var episode = episodes[place-1];
+    var episode = episodes[place-2];
     var episodeName = episode[0];
     var audioUrl = episode[1];
     var artworkUrl = episode[3];
