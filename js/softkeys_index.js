@@ -54,7 +54,9 @@ function contentListDown() {
     else {
         i_content++
     }
-    $(contentList[i_content-1]).focus();
+    var ele = $(contentList[i_content-1]);
+    scroll(ele);
+    ele.focus();
 }
 
 function contentListUp() {
@@ -64,7 +66,9 @@ function contentListUp() {
     else {
         i_content--;
     }
-    $(contentList[i_content-1]).focus()
+    var ele = $(contentList[i_content-1]);
+    scroll(ele);
+    ele.focus();
 }
 
 function LSK() {
@@ -109,6 +113,13 @@ function RSK() {
             console.log("Error");
         };
         }
+}
+
+function scroll(element) {
+    $('html, body').animate({
+        scrollTop: element.offset().top - 100 /* 80 is height of navbar + input label */
+    }, 150);
+
 }
 
 // Adding a podcast to subscribed table
